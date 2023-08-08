@@ -1,0 +1,4 @@
+#!/bin/bash
+#Set the Python code in the environment variable
+export PYCODE='print(f"Best School: {88+10}")'
+python3 -c "$PYCODE"
