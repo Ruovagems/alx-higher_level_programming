@@ -3,6 +3,7 @@ ifndef LISTS_H
 #include <stdio.h>
 #include <stdlib.h>
 #include "lists.h"
+#include <Python.h>
 /**
  * struct listint_s - singly linked list
  * @n: integer
@@ -32,8 +33,6 @@ def print_reversed_list_integer(my_list=[]):
 def replace_in_list(my_list, idx, element):
 def element_at(my_list, idx):
 def print_list_integer(my_list=[]):
-
 int is_palindrome(listint_t **head);
 void print_python_list_info(PyObject *p);
-
 #endif /* LISTS_H */
