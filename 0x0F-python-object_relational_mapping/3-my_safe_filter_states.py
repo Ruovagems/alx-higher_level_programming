@@ -2,25 +2,19 @@
 """
 Script that displays all values in the states table of hbtn_0e_0_usa where name matches the argument (safe from MySQL injection)
 """
-
 import MySQLdb
 import sys
 
 if __name__ == "__main__":
-    
-    username, password, database, state_name = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
 
-    
-    db = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=database)
-    cursor = db.cursor()
-
-    cursor.execute("SELECT * FROM states WHERE name=%s ORDER BY states.id", (state_name,))
-
-    
+    db = MySQLdb.connect(host="localhost", port=3306,
+            user=sys.argv[1], passwd=sys.argv[2],
+            db=sys.argv[3], charset="utf8")
+    cr = db.cursor()
+    myQuery = "SELECT * FROM states WHERE name=%(name)s ORDER BY states.id"
+    cr.execute(myQuery, {'name': sys.argv[4]})
     results = cursor.fetchall()
     for row in results:
         print(row)
-
-    
     cursor.close()
     db.close()i
