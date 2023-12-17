@@ -2,6 +2,9 @@
 """function to find a peak"""
 
 def find_peak(list_of_integers):
+    if not list_of_integers:
+        return None  # Return an appropriate value for an empty list
+
     low, high = 0, len(list_of_integers) - 1
 
     while low < high:
@@ -13,4 +16,3 @@ def find_peak(list_of_integers):
             low = mid + 1
 
     return list_of_integers[low]
-
