@@ -2,7 +2,13 @@
 """Task 6 function to find a peak"""
 
 def find_peak(list_of_integers):
-    """Return a peak in a list of unsorted integers."""
+    """Return a peak in a list of unsorted integers.
+    Args:
+    - list_of_integers: A list of unsorted integers.
+
+    Returns:
+    - The peak value in the list. If the list is empty, returns None.
+    """
     if list_of_integers == []:
         return None
 
