@@ -24,5 +24,6 @@ if __name__ == "__main__":
     db_host = "localhost"
     db_name = "hbtn_0e_100_usa"
     
-    engine = create_engine(f"mysql://{db_user}:{db_password}@{db_host}/{db_name}")
-    Base.metadata.create_all(engine)
+engine = create_engine(f"mysql://{db_user}:{db_password}@{db_host}/{db_name}")
+Base.metadata.create_all(engine)
+
