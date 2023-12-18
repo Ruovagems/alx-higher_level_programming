@@ -20,17 +20,17 @@ if __name__ == "__main__":
     db_user, db_password, db_name = sys.argv[1], sys.argv[2], sys.argv[3]
 
     # Connect to MySQL server
-    engine = create_engine("mysql://{}:{}@localhost:3306/{}".format(db_user, db_password, db_name))
-    Base.metadata.create_all(engine)
+engine = create_engine("mysql://{}:{}@localhost:3306/{}".format(db_user, db_password, db_name))
+Base.metadata.create_all(engine)
 
     # Create a session to interact with the database
-    Session = sessionmaker(bind=engine)
-    session = Session()
+Session = sessionmaker(bind=engine)
+session = Session()
 
     # Create the State "California" with the City "San Francisco"
-    california = State(name="California", cities=[City(name="San Francisco")])
-    session.add(california)
-    session.commit()
+california = State(name="California", cities=[City(name="San Francisco")])
+session.add(california)
+session.commit()
 
     # Close the session
-    session.close()
+session.close()
