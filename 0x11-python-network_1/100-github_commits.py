@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """
-This script lists 10 commits (from the most recent to oldest) of a specified repository by a given user.
+This script lists 10 commits:
+-(from the most recent to oldest);
+-of a specified repository by a given user.
 """
 
 import requests

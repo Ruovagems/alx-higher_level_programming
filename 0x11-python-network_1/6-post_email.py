@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-This script takes a URL and an email address, and displays the body of the response.
+This script takes a URL and an email address;
+-displays the body of the response.
 """
 
 import requests
