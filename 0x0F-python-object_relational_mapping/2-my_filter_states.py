@@ -13,7 +13,7 @@ if __name__ == "__main__":
     name = sys.argv[4]
 
     try:
-        # Explicitly set host to "localhost" and use default socket
+   # Explicitly set host to "localhost" and use default socket
         db = MySQLdb.connect(
             host="localhost", port=3306, user=us, passwd=ps, db=dbs, unix_socket="/var/run/mysqld/mysqld.sock"
         )
