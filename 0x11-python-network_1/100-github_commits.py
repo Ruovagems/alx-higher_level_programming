@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
     url = f"https://api.github.com/repos/{owner_name}/{repo_name}/commits"
     params = {'per_page': 10}
-    
+
     response = requests.get(url, params=params)
 
     try:
