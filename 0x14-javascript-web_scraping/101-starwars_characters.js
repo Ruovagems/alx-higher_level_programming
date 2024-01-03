@@ -5,7 +5,7 @@ let id = parseInt(process.argv[2], 10);
 let characters = [];
 
 request(url, function (err, response, body) {
-  if (err == null) {
+  if (err === null) {
     const resp = JSON.parse(body);
     const results = resp.results;
     if (id < 4) {
@@ -19,12 +19,12 @@ request(url, function (err, response, body) {
         break;
       }
     }
-    for (let j = 0; j < characters.length; j++) {
-      request(characters[j], function (err, response, body) {
-        if (err == null) {
+    characters.forEach(character => {
+      request(character, function (err, response, body) {
+        if (err === null) {
           console.log(JSON.parse(body).name);
         }
       });
-    }
+    });
   }
 });
