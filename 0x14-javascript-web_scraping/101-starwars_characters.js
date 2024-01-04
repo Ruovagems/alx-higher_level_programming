@@ -1,30 +1,46 @@
 #!/usr/bin/node
-const request = require('request');
-const url = 'http://swapi.co/api/films/';
-let id = parseInt(process.argv[2], 10);
-let characters = [];
 
-request(url, function (err, response, body) {
-  if (err === null) {
-    const resp = JSON.parse(body);
-    const results = resp.results;
-    if (id < 4) {
-      id += 3;
+const request = require('request');
+const movieId = process.argv[2];
+
+if (!movieId || isNaN(movieId)) {
+  console.error('Usage: ./101-starwars_characters.js <movie_id>');
+  process.exit(1);
+}
+
+const apiUrl = `https://swapi-api.alx-tools.com/api/films/${movieId}/`;
+
+request(apiUrl, function (error, response, body) {
+  try {
+    if (!error && response.statusCode === 200) {
+      const film = JSON.parse(body);
+      const charactersUrls = film.characters;
+
+      const fetchCharacterName = (url) => {
+        return new Promise((resolve, reject) => {
+          request(url, (err, res, b) => {
+            if (!err && res.statusCode === 200) {
+              const character = JSON.parse(b);
+              resolve(character.name);
+            } else {
+              reject(err);
+            }
+          });
+        });
+      };
+
+      // Fetch character names in order
+      charactersUrls.reduce((sequence, url) => {
+        return sequence.then(() => {
+          return fetchCharacterName(url).then((name) => {
+            console.log(name);
+          });
+        });
+      }, Promise.resolve());
     } else {
-      id -= 3;
+      console.error('Error:', error);
     }
-    for (let i = 0; i < results.length; i++) {
-      if (results[i].episode_id === id) {
-        characters = results[i].characters;
-        break;
-      }
-    }
-    characters.forEach(character => {
-      request(character, function (err, response, body) {
-        if (err === null) {
-          console.log(JSON.parse(body).name);
-        }
-      });
-    });
+  } catch (parseError) {
+    console.error('Error parsing JSON:', parseError);
   }
 });
